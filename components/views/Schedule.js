@@ -1,5 +1,7 @@
 import html from "html-literal";
 
 export default () => html`
-  <h3>Bio Content</h3>
-`;
+<div class="schedule">
+<h1>Class Schedule</h1>
+</div>
+`
