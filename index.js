@@ -7,17 +7,25 @@ import axios from "axios";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
+  console.log("Starting Render function");
   document.querySelector("#root").innerHTML = `
   ${Header(state)}
   ${Nav(store.Links)}
   ${Main(state)}
-  ${Footer(store.Footer)}
+  ${Footer(state)}
   `;
+  console.log("Ending render function");
+  console.log("Starting router.updatePageLinks");
   router.updatePageLinks();
-  afterRender();
+  console.log("Ending router.updatePageLinks");
+  console.log("Starting afterRender");
+  afterRender(state);
+  console.log("Ending afterRender");
 }
 
-function afterRender() {}
+function afterRender(state) {
+  console.log(`The state is ${state}`);
+}
 
 router.hooks({
   before: (done, params) => {
@@ -48,7 +56,6 @@ router.hooks({
               feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
               description: response.data.weather[0].main
             };
-
             done();
           })
           .catch(err => {
@@ -59,6 +66,15 @@ router.hooks({
 
       // New Axios get request utilizing already made environment variable
     }
+  },
+
+  already: params => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home";
+
+    render(store[view]);
   }
 });
 // router.on("/", () => render(store.Home)).resolve();

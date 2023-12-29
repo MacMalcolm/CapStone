@@ -6,3 +6,4 @@ export { default as Links } from "./Links";
 export { default as Post } from "./Post";
 export { default as Schedule } from "./Schedule";
 export { default as Location } from "./Location";
+export { default as Footer } from "./Footer";
