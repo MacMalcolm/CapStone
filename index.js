@@ -42,7 +42,7 @@ router.hooks({
               Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
 
             // Create an object to be stored in the Home state from the response
-            store.Footer.weather = {
+            store.Home.weather = {
               city: response.data.name,
               temp: kelvinToFahrenheit(response.data.main.temp),
               feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
