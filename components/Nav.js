@@ -11,7 +11,7 @@ export default links => html`
     ${links
       .map(
         link =>
-          `<a href="/${link.title}" title="${link.title}" class="navLink" data-navigo>${link.text}</a>`
+          `<links class="navLink"><a href="/${link.title}" title="${link.title}" data-navigo>${link.text}</a></links>`
       )
       .join("")}
   </nav>
