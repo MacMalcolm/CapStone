@@ -1,0 +1,75 @@
+.header {
+  background-color: rgb(12, 206, 196, 1);
+  display: flex;
+border:solid;
+padding: 0;
+min-height: 50px;
+max-height: 20%;
+justify-content: center;
+}
+
+@media (max-width: 375) { .header {
+  width: 375px;
+  background-color: rgb(150, 20, 150, 1);
+  display: flex;
+border:solid;
+padding: 0;
+min-height: 50px;
+max-height: 20%;
+justify-content: center;
+}}
+
+.footer {
+  display: flex;
+  margin: 0;
+background-color: rgb(12, 206, 196, 1);
+position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+  border: solid;
+}
+
+body {
+  background-color: rgb(204, 68, 93, 1);
+  margin: 0;
+}
+
+a {
+  color: black;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navLink {
+  margin: 0;
+  background-color: white;
+  border: solid;
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+
+.post {
+  position: relative;
+  left: 25%;
+  align-content: center;
+  display: flexbox;
+  max-width: 50%;
+}
+
+.main {
+
+  background-color: rgb(250, 235, 215, .5);
+}
