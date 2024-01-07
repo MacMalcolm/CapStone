@@ -1,7 +1,7 @@
 {
   "name": "savvy-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "This template repository contains several opinionated, 'starter' files and settings to help Savvy Coder students focus more time and energy on learning how to code and/or craft 'business logic' for projects and less time on configurations.",
   "scripts": {
     "parcel-build": "parcel build index.html && cp _redirects ./dist/",
     "serve": "parcel index.html"
@@ -19,10 +19,17 @@
   },
   "dependencies": {
     "axios": "^1.6.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "html-literal": "^1.1.0",
     "lodash": "^4.17.21",
+    "mongoose": "^8.0.3",
     "navigo": "^8.11.1",
     "parcel": "^2.10.3",
     "yargs-parser": ">=13.1.2"
+  },
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
   }
 }

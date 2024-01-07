@@ -18,7 +18,16 @@ function render(state = store.Home) {
   afterRender();
 }
 
-function afterRender() {}
+function afterRender() {
+  document.querySelector(".headerTest").addEventListener("click", change);
+}
+
+function change() {
+  const elements = document.querySelectorAll("header.headerTest");
+  for (const element of elements) {
+    element.classList.toggle("transformed-state");
+  }
+}
 
 router.hooks({
   before: (done, params) => {
