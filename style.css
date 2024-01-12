@@ -1,4 +1,4 @@
-.header {
+.headerTest {
   background-color: rgb(12, 206, 196, 1);
   display: flex;
 border:solid;
@@ -6,6 +6,20 @@ padding: 0;
 min-height: 50px;
 max-height: 20%;
 justify-content: center;
+transition-property: background-color;
+transition-timing-function: ease-in-out;
+transition-duration: 1s;
+}
+
+.transformed-state {
+  background-color: pink;
+  transition-property: background-color;
+  transition-timing-function: ease-in-out;
+  transition-duration: 1s;
+}
+
+#contactForm {
+  display: grid;
 }
 
 @media (max-width: 375) { .header {
@@ -20,7 +34,7 @@ justify-content: center;
 }}
 
 .footer {
-  display: flex;
+  display: grid;
   margin: 0;
 background-color: rgb(12, 206, 196, 1);
 position: absolute;
@@ -72,4 +86,15 @@ h1 {
 .main {
 
   background-color: rgb(250, 235, 215, .5);
+}
+
+#map {
+  display: flex;
+border: dashed;
+justify-content: center;
+}
+
+.border {
+  border: solid;
+  padding: 0;
 }

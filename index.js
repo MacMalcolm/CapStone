@@ -3,7 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { after, capitalize } from "lodash";
 import axios from "axios";
-
+import TesT from "./components/scripts/FormSub";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
@@ -15,10 +15,20 @@ function render(state = store.Home) {
   `;
 
   router.updatePageLinks();
-  afterRender();
+  afterRender(state);
 }
 
-function afterRender() {}
+function afterRender(state) {
+  document.querySelector(".headerTest").addEventListener("click", change);
+  TesT(state, store, router, axios);
+}
+
+function change() {
+  const elements = document.querySelectorAll("header.headerTest");
+  for (const element of elements) {
+    element.classList.toggle("transformed-state");
+  }
+}
 
 router.hooks({
   before: (done, params) => {
@@ -48,6 +58,25 @@ router.hooks({
               temp: kelvinToFahrenheit(response.data.main.temp),
               feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
               description: response.data.weather[0].main
+            };
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
+        break;
+
+      case "Messages":
+        axios
+          // Get request to retrieve the current weather data using the API key and providing city name
+          .get(`${process.env.MONGODB}`)
+          .then(response => {
+            // Create an object to be stored in the Messages state from the response
+            store.Messages.messages = {
+              name: response.data.name,
+              email: response.data.email,
+              message: response.data.message
             };
             done();
           })
