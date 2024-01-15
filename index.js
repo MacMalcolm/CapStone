@@ -3,7 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { after, capitalize } from "lodash";
 import axios from "axios";
-import TesT from "./components/scripts/FormSub";
+import FormSub from "./components/scripts/FormSub";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
@@ -20,10 +20,28 @@ function render(state = store.Home) {
 
 function afterRender(state) {
   document.querySelector(".headerTest").addEventListener("click", change);
-  TesT(state, store, router, axios);
+  FormSub(state, store, router, axios);
+  //insert post request. if state.view === contact {insert click handler here.}
+  // if (state.view === "Contact") {
+  //   document.querySelector(".")
+  //   axios
+  //     // Get request to retrieve the current weather data using the API key and providing city name
+  //     .post(`${process.env.API_URL}/messages`) //for get only. move post to after render section
+  //     .then(response => {
+  //       // Create an object to be stored in the Messages state from the response
+  //       store.Messages.messages.push(response.data);
+  //       router.navigate("/Messages");
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       // done();
+  //     });
+  // }
 }
-
+// Commented out code was for learning purposes only. Unhides element by toggling (visibility: hidden;) class on and off.
 function change() {
+  //const element = document.getElementById("change2");
+  //element.classList.toggle("visibleClass");
   const elements = document.querySelectorAll("header.headerTest");
   for (const element of elements) {
     element.classList.toggle("transformed-state");
@@ -67,24 +85,7 @@ router.hooks({
           });
         break;
 
-      case "Messages":
-        axios
-          // Get request to retrieve the current weather data using the API key and providing city name
-          .get(`${process.env.MONGODB}`)
-          .then(response => {
-            // Create an object to be stored in the Messages state from the response
-            store.Messages.messages = {
-              name: response.data.name,
-              email: response.data.email,
-              message: response.data.message
-            };
-            done();
-          })
-          .catch(err => {
-            console.log(err);
-            done();
-          });
-        break;
+      // break;
       // New case for Location
       // case "Location":
       //   axios
