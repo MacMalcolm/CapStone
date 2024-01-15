@@ -1,4 +1,4 @@
-export default function TesT(state, store, router, axios) {
+export default function FormSub(state, store, router, axios) {
   console.log("At start of TesT");
   if (state && state.view === "Contact") {
     // Add an event handler to submit button on contact form
@@ -15,11 +15,11 @@ export default function TesT(state, store, router, axios) {
         message: inputList.message.value
       };
       // Log the request body to the console
-      console.log("request Body", requestData);
+      console.log("Passed through setting request data");
 
       axios
         // Make a POST request to the API to create a new message
-        .post(`${process.env.MONGODB}/message`, requestData)
+        .post(`${process.env.API_URL}/message`, requestData)
         .then(response => {
           // Then push the new message onto the Message state message attribute so it can be displayed.
           store.Messages.messages.push(response.Data);

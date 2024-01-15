@@ -11,6 +11,18 @@ transition-timing-function: ease-in-out;
 transition-duration: 1s;
 }
 
+.testThis {
+  color: brown;
+}
+
+.hiddenClass {
+  visibility: hidden;
+}
+
+.visibleClass {
+  visibility: visible;
+}
+
 .transformed-state {
   background-color: pink;
   transition-property: background-color;
