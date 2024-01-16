@@ -56,7 +56,6 @@ router.get("/:id", async (request, response) => {
 // Delete a message by ID
 router.delete("/:id", async (request, response) => {
   try {
-    console.log("Hey there, request log Follows....");
     console.log(request.params.id);
     const data = await Message.findByIdAndDelete(request.params.id);
 
