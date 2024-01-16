@@ -36,9 +36,5 @@
     "navigo": "^8.11.1",
     "parcel": "^2.10.3",
     "yargs-parser": ">=13.1.2"
-  },
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
   }
 }
