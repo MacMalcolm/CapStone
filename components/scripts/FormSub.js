@@ -1,6 +1,5 @@
 export default function FormSub(state, store, router, axios) {
-  console.log("At start of TesT");
-  if (state && state.view === "Contact") {
+  if (state.view === "Contact") {
     // Add an event handler to submit button on contact form
     document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
@@ -19,11 +18,13 @@ export default function FormSub(state, store, router, axios) {
 
       axios
         // Make a POST request to the API to create a new message
-        .post(`${process.env.API_URL}/message`, requestData)
+        .post(`${process.env.API_URL}/messages`, requestData)
         .then(response => {
+          console.log("About to store data");
           // Then push the new message onto the Message state message attribute so it can be displayed.
-          store.Messages.messages.push(response.Data);
-          // Delete the following navigation after test succesful
+          store.Messages.messages.push(response.data);
+          // Delete the following navigation after test successful
+          console.log("Inside axios post request");
           router.navigate("/Messages");
         })
         .catch(error => {

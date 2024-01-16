@@ -3,7 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { after, capitalize } from "lodash";
 import axios from "axios";
-import FormSub from "./components/scripts/FormSub";
+import { FormSub, GetMessages, DeleteMessage } from "./components/scripts";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
@@ -21,22 +21,7 @@ function render(state = store.Home) {
 function afterRender(state) {
   document.querySelector(".headerTest").addEventListener("click", change);
   FormSub(state, store, router, axios);
-  //insert post request. if state.view === contact {insert click handler here.}
-  // if (state.view === "Contact") {
-  //   document.querySelector(".")
-  //   axios
-  //     // Get request to retrieve the current weather data using the API key and providing city name
-  //     .post(`${process.env.API_URL}/messages`) //for get only. move post to after render section
-  //     .then(response => {
-  //       // Create an object to be stored in the Messages state from the response
-  //       store.Messages.messages.push(response.data);
-  //       router.navigate("/Messages");
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       // done();
-  //     });
-  // }
+  DeleteMessage(state, store, router, axios);
 }
 // Commented out code was for learning purposes only. Unhides element by toggling (visibility: hidden;) class on and off.
 function change() {
@@ -85,7 +70,9 @@ router.hooks({
           });
         break;
 
-      // break;
+      case "Messages":
+        GetMessages(done, store, router, axios);
+        break;
       // New case for Location
       // case "Location":
       //   axios
