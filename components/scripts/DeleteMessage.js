@@ -1,23 +1,25 @@
 export default function DeleteMessage(state, store, router, axios) {
-  console.log("Entered the delete request");
-  console.log(`State.view: ${state.view}`);
   if (state.view === "Messages") {
     // Add an event handler to submit button on contact form
     console.log("in the if statement");
-    const messageID = document.querySelector("MessageList");
-    console.log("Attempting to locate by ID:");
-    console.log(messageID);
-    messageID.addEventListener("submit", event => {
-      event.preventDefault();
-    });
-    axios
-      // Make a DELETE request to the API to destroy a message
-      .delete(`${process.env.API_URL}/messages`)
-      .then(response => {
-        router.navigate("/Messages");
-      })
-      .catch(error => {
-        console.log("It broke, submit a Jira Ticket", error);
+    const buttons = document.querySelectorAll(".deleteButton");
+    buttons.forEach(function(button) {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        console.log("event target:", event.target);
+        const buttonID = event.target.value;
+        axios
+          // Make a DELETE request to the API to destroy a message. Also try adding , buttonID instead of hard code route
+          .delete(`${process.env.API_URL}/messages/${buttonID}`)
+          .then(response => {
+            console.log("Should be renavigating");
+            router.navigate("/messages");
+            router.navigate("/Messages");
+          })
+          .catch(error => {
+            console.log("It broke, submit a Jira Ticket", error);
+          });
       });
+    });
   }
 }
