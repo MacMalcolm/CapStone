@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import messages from "./routers/messages.js";
-
+import squads from "./routers/squads.js";
 // Load environment variables from .env file
 dotenv.config();
 
@@ -18,10 +18,7 @@ mongoose.connect(process.env.MONGODB, {
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "Connection Error:"));
-db.once(
-  "open",
-  console.log.bind(console, "Successfully opened connection to Mongo!")
-);
+db.once("open", console.log.bind(console, "Connected to Greatness!"));
 
 const PORT = process.env.PORT || 4040;
 
@@ -60,6 +57,7 @@ app.get("/status", (request, response) => {
 });
 
 app.use("/messages", messages);
+app.use("/schedule", squads);
 
 app.listen(PORT, () => console.log("Listening on port 4040"));
 

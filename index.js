@@ -3,7 +3,14 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { after, capitalize } from "lodash";
 import axios from "axios";
-import { FormSub, GetMessages, DeleteMessage } from "./components/scripts";
+import {
+  FormSub,
+  GetMessages,
+  DeleteMessage,
+  GetWeather,
+  SquadUpdate,
+  GetSquads
+} from "./components/scripts";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
@@ -19,9 +26,20 @@ function render(state = store.Home) {
 }
 
 function afterRender(state) {
+  console.log(`In after render and STATE is:${state.view}`);
+  const view = state.view;
   document.querySelector(".headerTest").addEventListener("click", change);
-  FormSub(state, store, router, axios);
-  DeleteMessage(state, store, router, axios);
+  switch (view) {
+    case "Contact":
+      FormSub(state, store, router, axios);
+      break;
+    case "Messages":
+      DeleteMessage(state, store, router, axios);
+      SquadUpdate(state, store, router, axios);
+      break;
+    default:
+      break;
+  }
 }
 // Commented out code was for learning purposes only. Unhides element by toggling (visibility: hidden;) class on and off.
 function change() {
@@ -40,39 +58,20 @@ router.hooks({
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
+    GetWeather(done, store, router, axios);
     // Add a switch case statement to handle multiple routes
     switch (view) {
       // Add a case for each view that needs data from an API
       // New Case for the Home View
       case "Home":
-        axios
-          // Get request to retrieve the current weather data using the API key and providing city name
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=st%20louis`
-          )
-          .then(response => {
-            // Convert Kelvin to Fahrenheit since OpenWeatherMap does not provide otherwise
-            const kelvinToFahrenheit = kelvinTemp =>
-              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-
-            // Create an object to be stored in the Home state from the response
-            store.Footer.weather = {
-              city: response.data.name,
-              temp: kelvinToFahrenheit(response.data.main.temp),
-              feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
-              description: response.data.weather[0].main
-            };
-            done();
-          })
-          .catch(err => {
-            console.log(err);
-            done();
-          });
         break;
 
       case "Messages":
         GetMessages(done, store, router, axios);
         break;
+        case "Schedule":
+          GetSquads(done, store, router, axios);
+          break;
       // New case for Location
       // case "Location":
       //   axios

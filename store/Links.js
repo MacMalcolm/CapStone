@@ -3,5 +3,6 @@ export default [
   { title: "Bio", text: "Bio" },
   { title: "Contact", text: "Contact" },
   { title: "Schedule", text: "Schedule" },
-  { title: "Location", text: "Location" }
+  { title: "Location", text: "Location" },
+  { title: "Messages", text: "Admin" }
 ];
