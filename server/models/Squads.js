@@ -8,17 +8,17 @@ const squadSchema = new mongoose.Schema({
   },
   time: {
     type: String,
-    required: true,
-    validate: /^[A-Za-z0-9]+@[a-zA-Z0-9.]*$/
+    required: false,
+    validate: /^[A-Za-z0-9]*$/
   },
   day: {
     type: String,
-    required: true,
+    required: false,
     validate: /^[A-Za-z0-9]*$/
   },
   availability: {
     type: String,
-    required: true,
+    required: false,
     validate: /^[A-Za-z]*$/
   }
 });
