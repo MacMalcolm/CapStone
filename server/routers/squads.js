@@ -58,7 +58,6 @@ router.delete("/:id", async (request, response) => {
   try {
     console.log(request.params.id);
     const data = await Squad.findByIdAndDelete(request.params.id);
-
     response.json(data);
   } catch (error) {
     // Output error to the console incase it fails to send in response

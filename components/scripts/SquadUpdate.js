@@ -7,31 +7,31 @@ export default function FormSub(state, store, router, axios) {
       //Get the form element
       const inputList = event.target.elements;
       console.log("Input Element List", inputList);
-
+      var squadID = "";
       const requestData = {
-        id: inputList.squad.value,
         squad: inputList.squad.value,
         time: inputList.time.value,
         day: inputList.day.value,
         availability: inputList.availability.value
       };
-      // Log the request body to the console
-      console.log("Passed through setting request data");
+      // Check to see if the squad already exists, the post or put accordingly
+      axios.get(`${process.env.API_URL}/Schedule`).then(response => {
+        for (const data of response.data) {
+            squadID = data.squad._id;
+            axios
+              // Make a Post request to the API to create a new squad
+              .delete(`${process.env.API_URL}/Schedule/${squadID}`)
+              .then(response => {
+                console.log("delete request initiated");
+                // Delete the following navigation after test successful
+                router.navigate("/Schedule");
+              })
+              .catch(error => {
+                console.log("It broke, submit a Jira Ticket", error);
+              });
+            }
+          }
+      );
+    }
 
-      axios
-        // Make a POST request to the API to create a new message
-        .put(`${process.env.API_URL}/Schedule`, requestData)
-        .then(response => {
-          console.log("About to store data");
-          // Then push the new message onto the Message state message attribute so it can be displayed.
-          store.Schedule.squad.push(response.data);
-          // Delete the following navigation after test successful
-          console.log("Inside axios post request");
-          router.navigate("/Schedule");
-        })
-        .catch(error => {
-          console.log("It broke, submit a Jira Ticket", error);
-        });
-    });
-  }
-}
+

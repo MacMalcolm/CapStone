@@ -69,9 +69,9 @@ router.hooks({
       case "Messages":
         GetMessages(done, store, router, axios);
         break;
-        case "Schedule":
-          GetSquads(done, store, router, axios);
-          break;
+      case "Schedule":
+        GetSquads(done, store, router, axios);
+        break;
       // New case for Location
       // case "Location":
       //   axios
