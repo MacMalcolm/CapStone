@@ -1,4 +1,4 @@
-export default function FormSub(state, store, router, axios) {
+//export default function FormSub(state, store, router, axios) {
   if (state.view === "Messages") {
     // Add an event handler to submit button on contact form
     document.querySelector("form").addEventListener("submit", event => {
@@ -30,8 +30,8 @@ export default function FormSub(state, store, router, axios) {
                 console.log("It broke, submit a Jira Ticket", error);
               });
             }
-          }
-      );
+
+      )
     }
-
-
+  }
+}
