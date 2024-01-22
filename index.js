@@ -8,7 +8,7 @@ import {
   GetMessages,
   DeleteMessage,
   GetWeather,
-  SquadUpdate,
+  //SquadUpdate,
   GetSquads
 } from "./components/scripts";
 const router = new Navigo("/");
@@ -35,7 +35,7 @@ function afterRender(state) {
       break;
     case "Messages":
       DeleteMessage(state, store, router, axios);
-      SquadUpdate(state, store, router, axios);
+      //SquadUpdate(state, store, router, axios);
       break;
     default:
       break;
